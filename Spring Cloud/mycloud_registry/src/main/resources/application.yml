@@ -1,0 +1,20 @@
+### 设定端口号
+server:
+  port: 25052
+### 设定项目应用名
+spring:
+   application:
+     name: mycloud-registry
+### 配置 Eureka Sever 信息
+eureka:
+  ### 配置注册中心主机名
+  instance:
+    hostname: localhost
+  client:
+    ### 作为注册中心，只负责注册业务，所以在注册中心所写的应用不应该作为服务暴露出来
+    register-with-eureka: false
+    ### 在 Spring Cloud 中可以存在多个注册中心，并且不同的注册中心之间可以交换所注册的服务
+    fetch-registry: false
+    ### 设定 Eureka Client 连接注册中心的地址
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
